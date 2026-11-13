@@ -4,3 +4,4 @@ BackdropSprites_draw = 0x80111E14; // type:func
 GradientBackdrop_emit = 0x80114178; // type:func
 UnlitModelEmitter_gt3 = 0x80114458; // type:func
 UnlitModelEmitter_gt4 = 0x801146FC; // type:func
+TombaTick_floor = 0x8010967C; // type:func

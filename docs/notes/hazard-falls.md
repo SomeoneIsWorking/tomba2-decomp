@@ -84,3 +84,18 @@ Tomba is frozen; the crust actor `IceCrust_step` (`0x8012E454`) grows up to thre
 `0x8012E340`, scale at layer+0x3A) and shatters them when he leaves the field or gains 0x640. Measured walking right
 from area 5 entry 0 with no suit: a point lost at f227, f347, f443 and the game-over substate at f547; with the
 Squirrel worn he walks on to Z 0x22C5.
+
+## Other areas' floor ticks
+
+Each test water against the swim bit `G+0x17E & 0x100` the same way: with it, mode 0x1D (or 0x32 out of mode 6),
+`G+4 = 1`; without it, `G+0 = 3` and substate 4.
+
+- A06 `TombaTick_floor` (`0x8010B334`): swims only once the area flag `0x800BFE56 & 0x40` is set; type 0x900 throws
+  Tomba back to the near or far point at `0x801422A0` by Z against 15000.
+- A08 `TombaTick_floor` (`0x8010B328`): after `FUN_8010B1E8`; skipped while `0x800BF873` or `0x1F800137` is set; a
+  hang (mode 0x2A) or a held mode 3 sets `G+0x181` instead of starting the swim, and `FUN_8012DE84(G, y)` picks the
+  surface height `0x1F80019E`. Measured from entry 1, spot sector 1 (8064, -3900, 7808): no suit falls in at f18 with
+  vitality 4 → 3; Swimming Pig worn swims at f14.
+- A0E `TombaTick_floor` (`0x8010967C`): while `0x800BF850 == 0x80` holds Tomba at the ridden actor `*0x1F800260`'s X
+  plus his radius. Entering the area plays the Water Pig Bag scene (Tomba in group 4 mode 0x22) unless
+  `0x800BFA1A & 0x10`; with it set, spot sector 5 (10240, -3070, 11840) drops Tomba onto water at f18.

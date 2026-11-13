@@ -3,3 +3,4 @@ LitModelEmitter_gt3 = 0x80129BAC; // type:func
 LitModelEmitter_gt4 = 0x8012A06C; // type:func
 OverlayGt3Gt4_gt3 = 0x80140FBC; // type:func
 OverlayGt3Gt4_gt4 = 0x801411D8; // type:func
+TombaTick_floor = 0x8010B328; // type:func
