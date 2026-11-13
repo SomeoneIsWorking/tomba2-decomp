@@ -6,3 +6,4 @@ LitModelEmitter_gt4 = 0x8013C5B4; // type:func
 UnlitModelEmitter_gt3_8013CF00 = 0x8013CF00; // type:func
 UnlitModelEmitter_gt4_8013D1E4 = 0x8013D1E4; // type:func
 TileGridLayer_emitClamped = 0x80141A94; // type:func
+TombaTick_floor = 0x8010B334; // type:func
