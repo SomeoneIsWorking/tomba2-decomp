@@ -5,5 +5,5 @@ UnlitModelEmitter_gt4 = 0x80112CF0; // type:func
 UnlitModelEmitter_gt3_80113150 = 0x80113150; // type:func
 UnlitModelEmitter_gt4_801133F4 = 0x801133F4; // type:func
 TileGridLayer_emitUnbiased = 0x801141B0; // type:func
-IceContact_chill = 0x8010A93C; // type:func
+IcePigBattle_contactHit = 0x8010A93C; // type:func
 AreaArrival_event = 0x8010F144; // type:func

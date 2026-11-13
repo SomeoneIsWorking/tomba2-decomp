@@ -2,3 +2,4 @@
 DustField_drawSnow = 0x8013AD90; // type:func
 FogModelEmitter = 0x8013F418; // type:func
 FogModelEmitter_8013F6E4 = 0x8013F6E4; // type:func
+TombaIdle_cold = 0x80112B50; // type:func; still on cold ground: shiver at 0x5A frames, frozen at 0x6E, damage unless Cold Powder 0x800BFAD5
