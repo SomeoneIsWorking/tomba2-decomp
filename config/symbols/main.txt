@@ -551,3 +551,6 @@ Tomba_mode3Step = 0x8005B63C; // type:func
 Tomba_mode6Step = 0x8005D16C; // type:func
 Tomba_mode16Step = 0x8005C26C; // type:func
 Tomba_modeDispatch = 0x80058918; // type:func
+Tomba_launch = 0x80055F48; // type:func
+Tomba_jumpRelease = 0x80056E08; // type:func
+Tomba_airActions = 0x80057C08; // type:func
