@@ -1,4 +1,5 @@
 // a00: names from our own RE (psx-tomba guest-address index, overrides and header constants).
+TombaTick_hazardFloor = 0x8010E408; // type:func
 ActorBump_respondToContact = 0x8010EA80; // type:func
 ActorMeleeEngage_doIt = 0x80112188; // type:func
 TileGridLayer_scrollStep = 0x8011534C; // type:func
