@@ -1,0 +1,38 @@
+name: A0H.BIN
+sha1: 47c2c86518bee63d4668e0ce75c4446969f34919
+options:
+  basename: a0h
+  target_path: disc/BIN/A0H.BIN
+  base_path: ../..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/a0h
+  src_path: src/a0h
+  asset_path: assets/a0h
+  build_path: build
+  ld_script_path: build/a0h.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/main.txt
+    - config/symbols/a0h.txt
+  undefined_funcs_auto_path: build/a0h.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/a0h.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: a0h
+    type: code
+    start: 0x0
+    vram: 0x80108F9C
+    subsegments:
+      - [0x0, data]
+      - [0x140, asm]
+      - [0x35F0, data]
+  - [0x36C0]

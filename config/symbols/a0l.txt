@@ -1,0 +1,5 @@
+// a0l: names from our own RE (psx-tomba guest-address index, overrides and header constants).
+OverlayGroundGt3Gt4_gt3 = 0x8010AA4C; // type:func
+OverlayGroundGt3Gt4_gt4 = 0x8010AD40; // type:func
+OverlayGt3Gt4_gt3 = 0x80112DEC; // type:func
+OverlayGt3Gt4_gt4 = 0x80112FBC; // type:func

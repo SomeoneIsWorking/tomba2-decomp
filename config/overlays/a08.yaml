@@ -1,0 +1,38 @@
+name: A08.BIN
+sha1: abddb36655ecc72406a2b497c212596c6db4d67c
+options:
+  basename: a08
+  target_path: disc/BIN/A08.BIN
+  base_path: ../..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/a08
+  src_path: src/a08
+  asset_path: assets/a08
+  build_path: build
+  ld_script_path: build/a08.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/main.txt
+    - config/symbols/a08.txt
+  undefined_funcs_auto_path: build/a08.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/a08.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: a08
+    type: code
+    start: 0x0
+    vram: 0x80108F9C
+    subsegments:
+      - [0x0, data]
+      - [0x1580, asm]
+      - [0x38498, data]
+  - [0x40F8C]

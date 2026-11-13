@@ -1,0 +1,9 @@
+// a07: names from our own RE (psx-tomba guest-address index, overrides and header constants).
+AreaMap_emit = 0x801140A0; // type:func
+OverlayGroundGt3Gt4_gt3 = 0x8012C7E0; // type:func
+OverlayGroundGt3Gt4_gt4 = 0x8012CAA8; // type:func
+LitModelEmitter_gt3 = 0x8012CDF4; // type:func
+LitModelEmitter_gt4 = 0x8012D2B4; // type:func
+TileGridLayer_emitRowLead = 0x8012F938; // type:func
+OverlayGt3Gt4_gt3 = 0x801311D0; // type:func
+OverlayGt3Gt4_gt4 = 0x801313A0; // type:func

@@ -1,0 +1,38 @@
+name: A0D.BIN
+sha1: 305a5a4ed6587734767719e4ae4a1a27dc8156ac
+options:
+  basename: a0d
+  target_path: disc/BIN/A0D.BIN
+  base_path: ../..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/a0d
+  src_path: src/a0d
+  asset_path: assets/a0d
+  build_path: build
+  ld_script_path: build/a0d.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/main.txt
+    - config/symbols/a0d.txt
+  undefined_funcs_auto_path: build/a0d.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/a0d.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: a0d
+    type: code
+    start: 0x0
+    vram: 0x80108F9C
+    subsegments:
+      - [0x0, data]
+      - [0x368, asm]
+      - [0xE53C, data]
+  - [0x1D328]

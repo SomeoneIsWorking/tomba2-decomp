@@ -1,0 +1,10 @@
+// sop: names from our own RE (psx-tomba guest-address index, overrides and header constants).
+UnlitModelEmitter_gt3 = 0x801099B4; // type:func
+UnlitModelEmitter_gt4 = 0x80109C80; // type:func
+sopBeatAdvanceWalk = 0x8010AF60; // type:func
+sopBeatAdvanceNarration = 0x8010B078; // type:func
+sopOrbitPathStep = 0x8010B11C; // type:func
+sopIntroEffectTick = 0x8010B2D4; // type:func
+sopIntroEffectSpawn = 0x8010B44C; // type:func
+sopLiftedSubtick = 0x8010B588; // type:func
+beh_orbit_spark_effect = 0x8010BEAC; // type:func

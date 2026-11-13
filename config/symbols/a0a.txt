@@ -1,0 +1,6 @@
+// a0a: names from our own RE (psx-tomba guest-address index, overrides and header constants).
+UnlitModelEmitter_gt3 = 0x8010F97C; // type:func
+UnlitModelEmitter_gt4 = 0x8010FD74; // type:func
+UnlitModelEmitter_gt3_801103F4 = 0x801103F4; // type:func
+UnlitModelEmitter_gt4_80110698 = 0x80110698; // type:func
+TileGridLayer_emitUnbiased = 0x801142EC; // type:func

@@ -1,0 +1,4 @@
+// a04: names from our own RE (psx-tomba guest-address index, overrides and header constants).
+DustField_drawSnow = 0x8013AD90; // type:func
+FogModelEmitter = 0x8013F418; // type:func
+FogModelEmitter_8013F6E4 = 0x8013F6E4; // type:func

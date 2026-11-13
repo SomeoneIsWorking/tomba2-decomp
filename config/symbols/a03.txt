@@ -1,0 +1,3 @@
+// a03: names from our own RE (psx-tomba guest-address index, overrides and header constants).
+UnlitModelEmitter_gt3 = 0x80110094; // type:func
+SubdividedGround_draw = 0x80110290; // type:func

@@ -1,0 +1,38 @@
+name: A00.BIN
+sha1: c34a290816d05433ca402fbaecde2bf424b4e664
+options:
+  basename: a00
+  target_path: disc/BIN/A00.BIN
+  base_path: ../..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/a00
+  src_path: src/a00
+  asset_path: assets/a00
+  build_path: build
+  ld_script_path: build/a00.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/main.txt
+    - config/symbols/a00.txt
+  undefined_funcs_auto_path: build/a00.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/a00.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: a00
+    type: code
+    start: 0x0
+    vram: 0x80108F9C
+    subsegments:
+      - [0x0, data]
+      - [0x13A0, asm]
+      - [0x3DA20, data]
+  - [0x459A8]

@@ -1,0 +1,6 @@
+// a02: names from our own RE (psx-tomba guest-address index, overrides and header constants).
+AreaMap_emit = 0x80113628; // type:func
+OverlayGroundGt3Gt4_gt3 = 0x801246A4; // type:func
+OverlayGroundGt3Gt4_gt4 = 0x8012496C; // type:func
+UnlitModelEmitter_gt3 = 0x80124DB8; // type:func
+UnlitModelEmitter_gt4 = 0x80125100; // type:func

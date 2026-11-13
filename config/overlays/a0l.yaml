@@ -1,0 +1,38 @@
+name: A0L.BIN
+sha1: b5f09d338c809957134cb1fe8cc9828503479931
+options:
+  basename: a0l
+  target_path: disc/BIN/A0L.BIN
+  base_path: ../..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/a0l
+  src_path: src/a0l
+  asset_path: assets/a0l
+  build_path: build
+  ld_script_path: build/a0l.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/main.txt
+    - config/symbols/a0l.txt
+  undefined_funcs_auto_path: build/a0l.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/a0l.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: a0l
+    type: code
+    start: 0x0
+    vram: 0x80108F9C
+    subsegments:
+      - [0x0, data]
+      - [0x264, asm]
+      - [0xA220, data]
+  - [0x12450]

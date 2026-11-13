@@ -1,0 +1,40 @@
+name: SCUS_944.54
+sha1: 9f68ffd6e4dfa9f9ff6ba6818760ee4c625be421
+options:
+  basename: scus_944.54
+  target_path: disc/SCUS_944.54
+  base_path: ..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/scus_944.54
+  src_path: src/scus_944.54
+  asset_path: assets/scus_944.54
+  build_path: build
+  ld_script_path: build/scus_944.54.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/scus_944.54.txt
+  undefined_funcs_auto_path: build/scus_944.54.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/scus_944.54.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: header
+    type: header
+    start: 0x0
+  - name: scus_944.54
+    type: code
+    start: 0x800
+    vram: 0x80010000
+    subsegments:
+      - [0x800, rodata]
+      - [0x1554, asm]
+      - [0x1035C, data]
+  - [0x29000]

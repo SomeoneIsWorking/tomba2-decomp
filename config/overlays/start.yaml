@@ -1,0 +1,37 @@
+name: START.BIN
+sha1: 5eb7efe5e5aff8a567c30367a7031a8243d26cca
+options:
+  basename: start
+  target_path: disc/BIN/START.BIN
+  base_path: ../..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/start
+  src_path: src/start
+  asset_path: assets/start
+  build_path: build
+  ld_script_path: build/start.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/main.txt
+    - config/symbols/start.txt
+  undefined_funcs_auto_path: build/start.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/start.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: start
+    type: code
+    start: 0x0
+    vram: 0x80106228
+    subsegments:
+      - [0x0, data]
+      - [0x274, asm]
+  - [0x670]

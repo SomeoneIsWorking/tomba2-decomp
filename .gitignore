@@ -1,0 +1,16 @@
+# The player's own disc files; never committed.
+/disc/
+# Everything splat produces from those files is game code or data.
+/asm/
+/assets/
+/build/
+/linker_scripts/
+/undefined_*_auto.txt
+*.ld
+# Local tooling.
+/.venv/
+__pycache__/
+*.pyc
+/scratch/
+# splat writes its assembler macros here on every split; tracked once C needs them.
+/include/

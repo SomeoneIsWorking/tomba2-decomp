@@ -1,0 +1,38 @@
+name: A0K.BIN
+sha1: 9dfaa004c493bd474842379b8129a18baab1b702
+options:
+  basename: a0k
+  target_path: disc/BIN/A0K.BIN
+  base_path: ../..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/a0k
+  src_path: src/a0k
+  asset_path: assets/a0k
+  build_path: build
+  ld_script_path: build/a0k.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/main.txt
+    - config/symbols/a0k.txt
+  undefined_funcs_auto_path: build/a0k.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/a0k.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: a0k
+    type: code
+    start: 0x0
+    vram: 0x80108F9C
+    subsegments:
+      - [0x0, data]
+      - [0x62C, asm]
+      - [0xF724, data]
+  - [0x16CC4]

@@ -1,0 +1,38 @@
+name: A03.BIN
+sha1: 8bd4bcc23f1c41b778e1c5733269d9e45701c86a
+options:
+  basename: a03
+  target_path: disc/BIN/A03.BIN
+  base_path: ../..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/a03
+  src_path: src/a03
+  asset_path: assets/a03
+  build_path: build
+  ld_script_path: build/a03.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/main.txt
+    - config/symbols/a03.txt
+  undefined_funcs_auto_path: build/a03.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/a03.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: a03
+    type: code
+    start: 0x0
+    vram: 0x80108F9C
+    subsegments:
+      - [0x0, data]
+      - [0x80, asm]
+      - [0x89C0, data]
+  - [0x1326C]

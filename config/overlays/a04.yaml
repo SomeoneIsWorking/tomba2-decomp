@@ -1,0 +1,38 @@
+name: A04.BIN
+sha1: 7c940d9434cb724c363a098312c2c84ba83511e5
+options:
+  basename: a04
+  target_path: disc/BIN/A04.BIN
+  base_path: ../..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/a04
+  src_path: src/a04
+  asset_path: assets/a04
+  build_path: build
+  ld_script_path: build/a04.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/main.txt
+    - config/symbols/a04.txt
+  undefined_funcs_auto_path: build/a04.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/a04.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: a04
+    type: code
+    start: 0x0
+    vram: 0x80108F9C
+    subsegments:
+      - [0x0, data]
+      - [0x1578, asm]
+      - [0x36AD8, data]
+  - [0x3D3A4]

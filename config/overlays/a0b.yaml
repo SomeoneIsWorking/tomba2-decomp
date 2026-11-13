@@ -1,0 +1,38 @@
+name: A0B.BIN
+sha1: 75269941dacd0b68102076181d0463f274e1ded6
+options:
+  basename: a0b
+  target_path: disc/BIN/A0B.BIN
+  base_path: ../..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/a0b
+  src_path: src/a0b
+  asset_path: assets/a0b
+  build_path: build
+  ld_script_path: build/a0b.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/main.txt
+    - config/symbols/a0b.txt
+  undefined_funcs_auto_path: build/a0b.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/a0b.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: a0b
+    type: code
+    start: 0x0
+    vram: 0x80108F9C
+    subsegments:
+      - [0x0, data]
+      - [0x320, asm]
+      - [0xF2D8, data]
+  - [0x1C368]

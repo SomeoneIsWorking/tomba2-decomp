@@ -1,0 +1,27 @@
+// a00: names from our own RE (psx-tomba guest-address index, overrides and header constants).
+ActorBump_respondToContact = 0x8010EA80; // type:func
+ActorMeleeEngage_doIt = 0x80112188; // type:func
+TileGridLayer_scrollStep = 0x8011534C; // type:func
+TileGridLayer_emit = 0x80115598; // type:func
+beh_id_routed_offset_point = 0x80122BF4; // type:func
+ReleaseTriggerMotion_hoverBobCycle = 0x80123E9C; // type:func
+ReleaseTriggerMotion_leaderFollowSync = 0x801241BC; // type:func
+ReleaseTriggerMotion_xSweepCycle = 0x80124328; // type:func
+ReleaseTriggerMotion_driftReposition = 0x801244E8; // type:func
+ReleaseTriggerMotion_arcSwoopMotion = 0x801246B4; // type:func
+ReleaseTriggerMotion_doubleArcMotion = 0x801249D4; // type:func
+ReleaseTriggerMotion_circleOrbitMotion = 0x80124C6C; // type:func
+beh_arm_countdown_if_linked_ready = 0x80127420; // type:func
+beh_distance_band_predicate = 0x801274BC; // type:func
+beh_spawn_toy_child_type2 = 0x80127510; // type:func
+beh_spawn_toy_child_type4 = 0x8012763C; // type:func
+beh_spawn_toy_child_type5 = 0x80127720; // type:func
+SwaySchedule_advanceRateThenSway = 0x8012D27C; // type:func
+Spawn_spawnQuadRecordChild = 0x801360F4; // type:func
+Spawn_spawnSiblingAngleChild = 0x80139838; // type:func
+Spawn_spawnLiftPlatformChild = 0x8013A730; // type:func
+Spawn_spawnChildTrigChild = 0x8013AC34; // type:func
+OverlayGroundGt3Gt4_entityLoop = 0x801401B8; // type:func
+ActorZonedAttacker_typeInit = 0x80140544; // type:func
+ActorZonedAttacker_idleTick = 0x80144B50; // type:func
+OverlayGt3Gt4_submitBlock = 0x80146478; // type:func

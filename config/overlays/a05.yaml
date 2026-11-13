@@ -1,0 +1,38 @@
+name: A05.BIN
+sha1: 05ea0e4071a358cff97a5c146b46489e1d61c970
+options:
+  basename: a05
+  target_path: disc/BIN/A05.BIN
+  base_path: ../..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/a05
+  src_path: src/a05
+  asset_path: assets/a05
+  build_path: build
+  ld_script_path: build/a05.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/main.txt
+    - config/symbols/a05.txt
+  undefined_funcs_auto_path: build/a05.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/a05.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: a05
+    type: code
+    start: 0x0
+    vram: 0x80108F9C
+    subsegments:
+      - [0x0, data]
+      - [0x1398, asm]
+      - [0x322B0, data]
+  - [0x392B4]

@@ -1,0 +1,11 @@
+[project]
+name = "tomba2-decomp"
+version = "0.1.0"
+description = "Tomba! 2 (USA) decompilation: splat config, symbol map and RE notes"
+requires-python = ">=3.11"
+dependencies = [
+    "splat64[mips]==0.50.1",
+]
+
+[tool.uv]
+package = false

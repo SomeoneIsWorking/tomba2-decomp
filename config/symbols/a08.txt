@@ -1,0 +1,5 @@
+// a08: names from our own RE (psx-tomba guest-address index, overrides and header constants).
+LitModelEmitter_gt3 = 0x80129BAC; // type:func
+LitModelEmitter_gt4 = 0x8012A06C; // type:func
+OverlayGt3Gt4_gt3 = 0x80140FBC; // type:func
+OverlayGt3Gt4_gt4 = 0x801411D8; // type:func

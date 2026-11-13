@@ -1,0 +1,38 @@
+name: A0C.BIN
+sha1: c00f2b9fe2cf34a75086a65e1e29f7597900b0c6
+options:
+  basename: a0c
+  target_path: disc/BIN/A0C.BIN
+  base_path: ../..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/a0c
+  src_path: src/a0c
+  asset_path: assets/a0c
+  build_path: build
+  ld_script_path: build/a0c.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/main.txt
+    - config/symbols/a0c.txt
+  undefined_funcs_auto_path: build/a0c.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/a0c.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: a0c
+    type: code
+    start: 0x0
+    vram: 0x80108F9C
+    subsegments:
+      - [0x0, data]
+      - [0x338, asm]
+      - [0xFC90, data]
+  - [0x1E1C0]

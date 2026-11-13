@@ -1,0 +1,38 @@
+name: A02.BIN
+sha1: c0232987d14263d5e61b763dd1322e27b87429cf
+options:
+  basename: a02
+  target_path: disc/BIN/A02.BIN
+  base_path: ../..
+  platform: psx
+  compiler: PSYQ
+  asm_path: asm/a02
+  src_path: src/a02
+  asset_path: assets/a02
+  build_path: build
+  ld_script_path: build/a02.ld
+  find_file_boundaries: False
+  gp_value: 0x800BE0D4
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  symbol_addrs_path:
+    - config/symbols/main.txt
+    - config/symbols/a02.txt
+  undefined_funcs_auto_path: build/a02.undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/a02.undefined_syms_auto.txt
+  subalign: 2
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+  - name: a02
+    type: code
+    start: 0x0
+    vram: 0x80108F9C
+    subsegments:
+      - [0x0, data]
+      - [0x158C, asm]
+      - [0x1F428, data]
+  - [0x3112C]
