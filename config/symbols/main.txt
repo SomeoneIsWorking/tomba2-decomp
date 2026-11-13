@@ -536,3 +536,5 @@ Tomba_longFall = 0x80067A40; // type:func
 Tomba_hazardDispatch = 0x80067CA4; // type:func
 g_HazardRespawnEntry = 0x800A47E8;
 g_VitalityCarry = 0x800BF880;
+Tomba_suitWord = 0x80067EF4; // type:func
+Tomba_suitEvent = 0x80058304; // type:func
