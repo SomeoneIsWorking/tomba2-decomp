@@ -115,3 +115,13 @@ monster's touch: on `0x8001F830` contact Tomba faces the contact angle and, when
 `G+0 |= 8`, then `G+0x177 = 2`). Heavier suits are knocked back (mode 0x34). Reached from area 4 entry 1, spot
 sector 23 (3392, -10500, 10600): no suit freezes at f66 with vitality 4 → 3. `0x80110A30` repeats case 0x28 and has no
 reference.
+
+A04's Tomba tick `TombaTick_snowField` (`0x8010B024`): at entry 7 a death-type floor (0x700) leaves the area
+(`0x1F800137 = 2`, `0x800BF80F = 2`, `0x800BF839 = 3`, `0x8005082C(0, 0, 0)`, `0x800BF83A` 0x408 for floor bits
+12..15 == 1, else 0x402); elsewhere a hazard death floor is substate 5. Off hazard floors, with `G+0x16A != 6` (6 is
+the snow-slope slide of `0x800532A0`), a winged suit (`G+0x17E & 0x60`), `G+0x78 == 0` and collision sector
+`G+0x2A >= 0x27`, it sets `0x800BF819 = 4`: `Tomba_angleWrapCountdown` (`0x80059D28`) spends it one per frame,
+masking `0x800FCF54` and `0x800E7E68` to 12 bits. Sectors 0x27..0x2A are slope (0x3501), so the first reach is
+sector 43 (x 4736, z 7424..8768, floor y -7043). `G+0x2A` is the collision sector the grid walk last stored.
+`0x8010F75C`'s kind 1 test needs `G+0x16A == 8`, which `0x800532A0` sets only on a 0x500 floor with nibble 4: no
+area has one.
