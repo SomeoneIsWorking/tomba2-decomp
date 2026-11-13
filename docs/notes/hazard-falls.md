@@ -105,3 +105,13 @@ Each test water against the swim bit `G+0x17E & 0x100` the same way: with it, mo
 - A0E `TombaTick_floor` (`0x8010967C`): while `0x800BF850 == 0x80` holds Tomba at the ridden actor `*0x1F800260`'s X
   plus his radius. Entering the area plays the Water Pig Bag scene (Tomba in group 4 mode 0x22) unless
   `0x800BFA1A & 0x10`; with it set, spot sector 5 (10240, -3070, 11840) drops Tomba onto water at f18.
+
+## Area 4's ice monster
+
+A04's Tomba contact loop `TombaContacts_loop` (`0x8010F1CC`) walks `*0x1F80013C` (count `0x1F800144`, left
+`0x1F800182`) and dispatches on the actor kind through the table at `0x801092E8` (kind - 8). Kind 0x28 is the ice
+monster's touch: on `0x8001F830` contact Tomba faces the contact angle and, when `0x80022D08(G, 0, 1, 1)` takes,
+`G+0x177 & 2` is clear and the suit word has 0x30 (no suit or the Bird), he freezes (mode 0 substate 4,
+`G+0 |= 8`, then `G+0x177 = 2`). Heavier suits are knocked back (mode 0x34). Reached from area 4 entry 1, spot
+sector 23 (3392, -10500, 10600): no suit freezes at f66 with vitality 4 → 3. `0x80110A30` repeats case 0x28 and has no
+reference.
