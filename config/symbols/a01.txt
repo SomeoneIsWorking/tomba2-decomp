@@ -7,3 +7,7 @@ LitModelEmitter_gt3 = 0x801316A8; // type:func
 LitModelEmitter_gt4 = 0x80131BB0; // type:func
 UnlitModelEmitter_gt3 = 0x80132690; // type:func
 UnlitModelEmitter_gt4 = 0x801329C4; // type:func
+A01_ropeMode = 0x8010A530; // type:func
+Pulley_spawn = 0x80126608; // type:func
+PulleyRope_motion = 0x80129C70; // type:func
+PulleyRope_tick = 0x8012A454; // type:func

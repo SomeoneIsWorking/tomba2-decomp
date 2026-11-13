@@ -145,8 +145,12 @@ same lift in `IcePigBattle_updraftContact` (`0x8010A93C`, from the contact loops
 `0x8010B63C`), always growing the extents and leaving them grown when nothing touches (it zeroes the touch count
 +0x64). After 0x3D frames of touches, with `G+0x16E` set, `0x1F800137`, `G+0x177 & 2` and `G+0x78` clear and no
 Evil Flame Pig Robe (`G+0x17E & 0x400`), Tomba freezes: hazard substate 6 (`G+0 |= 0xC`, phase 1 if Cold Powder
-`0x800BFAD5` is held or `0x80022D08(G, 0, 1, 1)` fails), the actor's +0 = 2. Not yet reached in a run: warp 11/1
-opens with the battle's dialogue (circle advances it) and no kind 0x55 touch came before Tomba fell. The frozen states `0x8010B73C` and
+`0x800BFAD5` is held or `0x80022D08(G, 0, 1, 1)` fails), the actor's +0 = 2. The kind 0x55 actor is the boss's
+whirlwind (tick `IcePig_whirlwindTick` `0x801179BC`: it falls, then runs along the floor at up to 0x1C00). Only boss
+mode 6 (`IcePig_whirlwindAttack` `0x8010F9D8`, substate 2) throws it; `IcePig_attackPick` (`0x8010D1F0`, substate 5)
+picks mode 6 for the cycle counter +0x64 = 1 or 2 when the boss (kind 0x66, tick `IcePig_tick` `0x8010FC1C`) has 1
+hit point left in +0x6E (2 when `0x800BF870 == 0xF`), else mode 5. From `warp 11/0` the battle starts once circle has
+run the dialogue (about f1150). The frozen states `0x8010B73C` and
 `0x8010B938` set `G+0x177 |= 2`, which the frost actor `0x80114608` shows until the robe is worn.
 
 A01's Tomba tick `PipeArea_tombaTick` (`0x8010C7BC`): at entries 15 and up it does nothing. While `0x800BFE56 & 2`
@@ -157,10 +161,17 @@ sinks 0x20 a frame.
 
 `Tomba_climbStep` (`0x80062A30`, a0 Tomba, a1 the climbable, a2 the mode bits; called from A00, A01, A04, A0A, A0C,
 A0F) moves `G+0x156`, his place along the climbable. Mode 3 lets go once `Tomba_groundCheck` says he stands. The
-step is s8 `0x800A4700[mode & 1]` (+3 with `G+0x165`), or for mode bit 2 `G+0x4A` growing by 4 up to 0x1E. Down
-(bit 0 clear) clears the floor attribute, follows a moving climbable (kind 0x17, part +0x47 != 2) by its velocity
-`+0x4A >> 8` (bit 1: a 0x30 drop), undoes the step if `0x800541F4(G, 1)` hits and stops at `-climbable84`. Up past
-the top (`+0x86 - +0x84 + G+0x68`, +0x50 when grown) on bit 7 or a moving climbable he jumps off: `G+0x156 += 0x2C`,
-`0x80056D44(G, 0)`, and off a kind 0x17 he takes its velocity, rises 0x2C more and, in a winged suit
-(`G+0x17E & 0x60`), another `(velocity & 0x1F00) >> 5`. Otherwise the place is capped at the height; then, without
-bit 6, standing lets go (mode 0x85 turns him round, mode 0x35).
+step is s8 `0x800A4700[mode & 1]` (-0x10 up, +0x16 down; +3 with `G+0x165`), or for mode bit 2 `G+0x4A` growing by
+4 up to 0x1E. `G+0x156` grows downward: Tomba's y is the climbable's y plus it. Up (bit 0 clear) clears the floor
+attribute, follows a moving climbable (kind 0x17, part +0x47 != 2) by its velocity `+0x4A >> 8` (bit 1, the hit
+substate: pushed 0x30 up), undoes the step if `0x800541F4(G, 1)` hits and stops at `-climbable84`. Down past the end
+(`+0x86 - +0x84 + G+0x68`, +0x50 when grown) on bit 7 or a moving climbable he drops off: `G+0x156 += 0x2C`,
+`0x80056D44(G, 0)`, and off a kind 0x17 he takes its velocity, starts 0x2C lower and, in a winged suit
+(`G+0x17E & 0x60`), another `(velocity & 0x1F00) >> 5` lower. Otherwise the place is capped at the height; then,
+without bit 6, standing lets go (mode 0x85 turns him round, mode 0x35).
+
+A01's kind 0x17 climbables are pulley ropes. `Pulley_spawn` (`0x80126608`) makes a twin of its parent and three
+ropes ticking `PulleyRope_tick` (`0x8012A454`): +0x47 0 and 1 the two hanging ends, 2 the still knot. `A01_ropeMode`
+(`0x8010A530`, mode 4 through `0x8010ACB8` while `G+0x158` holds a rope) calls the climb step with 0 on up (pad
+0x10), 1 on down (0x40), 3 to let go. A weighted rope pays out through `PulleyRope_motion` (`0x80129C70`): +0x4A
+doubles from 4 to +0x50, then grows by +0x50 to 0x1F00, so the winged drop off its end is 0xF8 lower.

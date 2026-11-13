@@ -181,6 +181,7 @@ Engine_frameStartTick = 0x80059D28; // type:func
 beh_camera_target_follow = 0x80059ED8; // type:func
 ActorTomba_idleColdGate = 0x8005A910; // type:func
 Tomba_climbStep = 0x80062A30; // type:func
+g_ClimbStepTable = 0x800A4700;
 Engine_uploadModeSprites = 0x80067DA8; // type:func
 CutsceneCamera_yFloor = 0x8006C80C; // type:func
 CutsceneCamera_shakeTail = 0x8006C988; // type:func
