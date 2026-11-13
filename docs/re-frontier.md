@@ -111,6 +111,13 @@ port owner or the issue holds the proof.
 - where: `game/render/model_packet.cpp`, `lit_model_emitter.cpp`, `unlit_model_emitter.cpp`, `sway_model_emitter.cpp`, `overlay_gt3gt4.cpp`, `overlay_ground_gt3gt4.cpp`, `tile_grid_layer.cpp`
 - gap: bodies that differ from every native are not ported: A02 0x80124DB8/0x80125100, A03 0x80110094/0x80110290, A04 0x801175FC/0x801178A0 and 0x8013D0F8/0x8013D568, A05 0x8013484C/0x80134B74 and 0x8013AC90/0x8013AF0C, A07 0x8012DBB4/0x8012DE60, A0A 0x8010F97C/0x8010FD74, A0D 0x80112DE4/0x801131B0, A0E 0x80113AEC/0x80113DE0 (A06's 0x8013BA44 plus a world-X cut while 0x1F80009C is set, mid-projection), A0F 0x80114A5C/0x80114E70, A0G 0x8010C3A4/0x8010C664, A0K 0x80114F1C/0x8011562C and 0x801163E0/0x80116708.
 
+### T2-R4 — The text fonts
+- status: re-verified
+- deps: T2-R1
+- evidence: `docs/notes/text-fonts.md`. Decompiled `FUN_80078CA8`, `FUN_80078988`, `FUN_8007C940` with `decomp_pipeline.py`; `FUN_8007CC00` and `FUN_8007CDD4` are native in the port. The cell formulas name the 8x16 and 8x8 fonts (cell = ASCII - 0x20) and the 16x16 icons on page (960, 256), each read back from VRAM at the area 8 pause menu; the callers of each drawer are every caller Ghidra holds.
+- where: psx-tomba `game/ui/text_fonts.h`, `font.cpp`, `dialog_glyphs.cpp`
+- gap: the token strings at 0x80016DA0-0x80016DAC and the table at 0x800A55E0 are not decoded; the unshadowed font at v 152 has no drawer found.
+
 ### T2-R3 — Render-record reuse
 - status: re-verified
 - deps: T2-R1
