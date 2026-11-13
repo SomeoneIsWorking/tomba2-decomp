@@ -1,3 +1,6 @@
 // a05: names from our own RE (psx-tomba guest-address index, overrides and header constants).
 LitModelEmitter_gt3 = 0x8013544C; // type:func
 LitModelEmitter_gt4 = 0x8013590C; // type:func
+TombaTick_coldField = 0x8010A854; // type:func
+IceCrust_step = 0x8012E454; // type:func
+IceCrust_addLayer = 0x8012E340; // type:func

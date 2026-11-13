@@ -73,3 +73,14 @@ sub-mode.
 
 Area 4's death floor (sector 2, from entry 1) measures the same: substate 5 and vitality 0 retail, the water fall
 and respawn at area 4 entry 1 (`g_HazardRespawnEntry[4]`) with the redirect.
+
+## Area 5's cold field
+
+Past Z 0x1928 in area 5 the cold reaches Tomba unless the suit word carries 0x640 (Squirrel Clothes, Clear Fruit, Evil
+Flame Pig Robe). A05's Tomba tick `TombaTick_coldField` (`0x8010A854`), with no event flag `0x800BFE56 & 0x20` and
+`G+0x177 & 2` clear, starts hazard substate 6 (`G+4 = 2, G+5 = 6`, `G+7 = 1` with Cold Powder `0x800BFAD5` or when
+`0x80022D08(G, 0, 1, 1)` is 0). Substate 6 takes a point and hands over to mode 0x1A, which sets `G+0x177 & 2` while
+Tomba is frozen; the crust actor `IceCrust_step` (`0x8012E454`) grows up to three layers on him (`IceCrust_addLayer`
+`0x8012E340`, scale at layer+0x3A) and shatters them when he leaves the field or gains 0x640. Measured walking right
+from area 5 entry 0 with no suit: a point lost at f227, f347, f443 and the game-over substate at f547; with the
+Squirrel worn he walks on to Z 0x22C5.
