@@ -9,7 +9,10 @@ vitality to the maximum, or to `0x1F800194` when the carry flag `0x800BF880` is 
 
 `Tomba_groundCheck` (`0x8005444C`) copies the attribute of the floor line under Tomba into `G+0x6A`. Bit 0x8000
 marks a hazard floor; `& 0xF00` is its type: 0x100 and 0x200 water, 0x700 death. Bits 12..14 are the water
-kind the area tick branches on. Floor lines live in the area's collision grid: the layer table at
+kind the area tick branches on. Type 0x500 is snow, only in areas 4 (`0x15xx`) and 5 (`0x25xx`): `Tomba_runSpeed`
+(`0x80055FBC`) cuts the start speed to an eighth and the brake to half there while the suit word `G+0x17E & 0x30`
+(no suit 0x10, Bird Clothes 0x20) is set. `0x800532A0` sends the same suits on type 0x500 with bits 12..15 = 4 to
+mode 0x35, but no area's grid has such a line. Floor lines live in the area's collision grid: the layer table at
 `*0x1F8001C8`: entry 0 is the sector count and sector s (1-based) is at the u16 halfword offset in entry s
 (`FUN_800490E4` scans them; `FUN_80048ECC` loads one). Each sector record `{x0, x1, z0, z1, ?, links, cells, cellLinks,
 lines, verts}` (offsets in halfwords from the record) followed by 4-byte rows `{first z cell, first cell}`, one per 64-unit X step from min(x0, x1), cells 64 units in Z

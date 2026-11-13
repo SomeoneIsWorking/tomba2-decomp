@@ -554,3 +554,4 @@ Tomba_modeDispatch = 0x80058918; // type:func
 Tomba_launch = 0x80055F48; // type:func
 Tomba_jumpRelease = 0x80056E08; // type:func
 Tomba_airActions = 0x80057C08; // type:func
+Tomba_runSpeed = 0x80055FBC; // type:func
