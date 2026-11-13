@@ -1,5 +1,8 @@
 // a01: names from our own RE (psx-tomba guest-address index, overrides and header constants).
-TombaTick_deathFloor = 0x8010C7BC; // type:func
+PipeArea_tombaTick = 0x8010C7BC; // type:func
+SteamVent_tombaContact = 0x8010D90C; // type:func
+TombaContacts_loop = 0x8010F40C; // type:func
+SteamVent_spawn = 0x80133574; // type:func
 LitModelEmitter_gt3 = 0x801316A8; // type:func
 LitModelEmitter_gt4 = 0x80131BB0; // type:func
 UnlitModelEmitter_gt3 = 0x80132690; // type:func

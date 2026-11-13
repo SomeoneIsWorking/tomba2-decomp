@@ -125,3 +125,42 @@ masking `0x800FCF54` and `0x800E7E68` to 12 bits. Sectors 0x27..0x2A are slope (
 sector 43 (x 4736, z 7424..8768, floor y -7043). `G+0x2A` is the collision sector the grid walk last stored.
 `0x8010F75C`'s kind 1 test needs `G+0x16A == 8`, which `0x800532A0` sets only on a 0x500 floor with nibble 4: no
 area has one.
+
+## Area 1's steam vents and A0B's updraft
+
+A01's contact loop `0x8010F40C` dispatches on the actor kind through the table at `0x80109190`; kind 0x12 is a steam
+vent, `SteamVent_tombaContact` (`0x8010D90C`). The vents are spawned by `0x80133574` (shape = index, update
+`0x80132FD0`) at the positions of the s16 xyz table `0x80138AF0`, gated per index by the bits of `0x800BF9F4`; vent
+0 stands at (10496, -7488, 9040). While Tomba is tested the vent's extents +0x84/+0x86 grow by 200, or by 400 with
+`G+0x17E & 0x40` (the Squirrel), unless he holds something (`G+0x78`). On a `0x80022F04` overlap the depth
+`d = G84 + vent84 + 300 - (vent32 - G32)` kicks him: `0x800BF848` = the box test's floor `0x1F800090` (or 1 and
+sound 0x25), x speed `G+0x44` loses a quarter, and `G+0x4A -= 2d`, clamped to 0x280 and to -0x3E00 (d < 500) or
+-0x2800; a side hit (`0x1F800094`) instead zeroes `G+0x4A`/`G+0x50` and pushes `G+0x30` back by `d << 12`. Poses
+0x13..0x15, 0xCA, 0xE5, 0xE6 switch to pose 0x12 unless the floor kind is set and `G+0x145 == 1` (then
+`0x800BF848 = 4`). Shape 8 only pushes Tomba down by the overlap. Standing on vent 0 (spot sector 2) Tomba floats
+at y -8828..-8696 with no suit and about 200 higher with the Squirrel.
+
+A0B is the Evil Ice Pig battle. Its kind 0x55 actor, spawned by `0x80117FD8` 0x12C in front of its parent's facing, runs the
+same lift in `IcePigBattle_updraftContact` (`0x8010A93C`, from the contact loops' kind 0x55 cases at `0x8010B2B8` and
+`0x8010B63C`), always growing the extents and leaving them grown when nothing touches (it zeroes the touch count
++0x64). After 0x3D frames of touches, with `G+0x16E` set, `0x1F800137`, `G+0x177 & 2` and `G+0x78` clear and no
+Evil Flame Pig Robe (`G+0x17E & 0x400`), Tomba freezes: hazard substate 6 (`G+0 |= 0xC`, phase 1 if Cold Powder
+`0x800BFAD5` is held or `0x80022D08(G, 0, 1, 1)` fails), the actor's +0 = 2. Not yet reached in a run: warp 11/1
+opens with the battle's dialogue (circle advances it) and no kind 0x55 touch came before Tomba fell. The frozen states `0x8010B73C` and
+`0x8010B938` set `G+0x177 |= 2`, which the frost actor `0x80114608` shows until the robe is worn.
+
+A01's Tomba tick `PipeArea_tombaTick` (`0x8010C7BC`): at entries 15 and up it does nothing. While `0x800BFE56 & 2`
+and `0x800BF839 == 0`, a death floor takes the exit `0x8010C6EC` picks by `G+0x2A` (only when `G+0x164 == 1`, else
+the fall) and so does any climb above y -0x8FB. Otherwise a death floor is substate 5, and when `0x800BF8BE != 0xFF`
+a fluttering Bird (`G+0x17E & 0x20`, `G+0x179` set by the flutter `0x80056F3C`) in x 0x28B5..0x2D69 below y -0x1A8F
+sinks 0x20 a frame.
+
+`Tomba_climbStep` (`0x80062A30`, a0 Tomba, a1 the climbable, a2 the mode bits; called from A00, A01, A04, A0A, A0C,
+A0F) moves `G+0x156`, his place along the climbable. Mode 3 lets go once `Tomba_groundCheck` says he stands. The
+step is s8 `0x800A4700[mode & 1]` (+3 with `G+0x165`), or for mode bit 2 `G+0x4A` growing by 4 up to 0x1E. Down
+(bit 0 clear) clears the floor attribute, follows a moving climbable (kind 0x17, part +0x47 != 2) by its velocity
+`+0x4A >> 8` (bit 1: a 0x30 drop), undoes the step if `0x800541F4(G, 1)` hits and stops at `-climbable84`. Up past
+the top (`+0x86 - +0x84 + G+0x68`, +0x50 when grown) on bit 7 or a moving climbable he jumps off: `G+0x156 += 0x2C`,
+`0x80056D44(G, 0)`, and off a kind 0x17 he takes its velocity, rises 0x2C more and, in a winged suit
+(`G+0x17E & 0x60`), another `(velocity & 0x1F00) >> 5`. Otherwise the place is capped at the height; then, without
+bit 6, standing lets go (mode 0x85 turns him round, mode 0x35).
