@@ -116,7 +116,7 @@ port owner or the issue holds the proof.
 - deps: T2-R1
 - evidence: `docs/notes/text-fonts.md`. Decompiled `FUN_80078CA8`, `FUN_80078988`, `FUN_8007C940` with `decomp_pipeline.py`; `FUN_8007CC00` and `FUN_8007CDD4` are native in the port. The cell formulas name the 8x16 and 8x8 fonts (cell = ASCII - 0x20) and the 16x16 icons on page (960, 256), each read back from VRAM at the area 8 pause menu; the callers of each drawer are every caller Ghidra holds.
 - where: psx-tomba `game/ui/text_fonts.h`, `font.cpp`, `dialog_glyphs.cpp`
-- gap: the token strings at 0x80016DA0-0x80016DAC and the table at 0x800A55E0 are not decoded; the unshadowed font at v 152 has no drawer found.
+- gap: none for the drawers; the token table (0x800A55E0) and its strings are decoded, and the unshadowed font at v 152 has no drawer (`text-fonts.md`).
 
 ### T2-R3 — Render-record reuse
 - status: re-verified
