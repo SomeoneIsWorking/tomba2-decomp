@@ -10,8 +10,10 @@ vitality to the maximum, or to `0x1F800194` when the carry flag `0x800BF880` is 
 `Tomba_groundCheck` (`0x8005444C`) copies the attribute of the floor line under Tomba into `G+0x6A`. Bit 0x8000
 marks a hazard floor; `& 0xF00` is its type: 0x100 and 0x200 water, 0x700 death. Bits 12..14 are the water
 kind the area tick branches on. Floor lines live in the area's collision grid: the layer table at
-`*0x1F8001C8` (u16 offsets in halfwords), each layer record `{x0, x1, z0, z1, ?, links, cells, cellLinks,
-lines, verts}` (offsets in halfwords from the record) followed by 4-byte rows `{first z cell, first cell}`;
+`*0x1F8001C8`: entry 0 is the sector count and sector s (1-based) is at the u16 halfword offset in entry s
+(`FUN_800490E4` scans them; `FUN_80048ECC` loads one). Each sector record `{x0, x1, z0, z1, ?, links, cells, cellLinks,
+lines, verts}` (offsets in halfwords from the record) followed by 4-byte rows `{first z cell, first cell}`, one per 64-unit X step from min(x0, x1), cells 64 units in Z
+from min(z0, z1) (`FUN_80047CBC`);
 a cell is `{tag, first line, line count, ?}`, a line `{attribute, y, slope, vertex}`.
 
 Hazard floors at each area's entry 0 (sector, x, z, floor y):
@@ -65,3 +67,6 @@ reloads the area at the picked entry.
 Entering substate 4 where the death floor enters 5 (same `G+6`) gives the water fall in area 1: vitality 4 → 3,
 substates 6..9, respawn at area 1 entry 1 with 3 vitality; at 1 vitality it reaches 0 and the same game-over
 sub-mode.
+
+Area 4's death floor (sector 2, from entry 1) measures the same: substate 5 and vitality 0 retail, the water fall
+and respawn at area 4 entry 1 (`g_HazardRespawnEntry[4]`) with the redirect.

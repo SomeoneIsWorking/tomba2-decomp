@@ -538,3 +538,6 @@ g_HazardRespawnEntry = 0x800A47E8;
 g_VitalityCarry = 0x800BF880;
 Tomba_suitWord = 0x80067EF4; // type:func
 Tomba_suitEvent = 0x80058304; // type:func
+Tomba_modeTableB = 0x80058F5C; // type:func
+Tomba_modeEventHold = 0x800658E4; // type:func
+g_ItemText = 0x800A2B68; // 12-byte {name, description, kind}, indexed by item id + 11
