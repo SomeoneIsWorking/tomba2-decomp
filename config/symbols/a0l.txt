@@ -3,3 +3,5 @@ OverlayGroundGt3Gt4_gt3 = 0x8010AA4C; // type:func
 OverlayGroundGt3Gt4_gt4 = 0x8010AD40; // type:func
 OverlayGt3Gt4_gt3 = 0x80112DEC; // type:func
 OverlayGt3Gt4_gt4 = 0x80112FBC; // type:func
+StrMovie_play = 0x80112660; // type:func
+g_EndMovies = 0x8011A6AC; // 12-byte {path, staging, frames}: END.STR, LOGO.STR

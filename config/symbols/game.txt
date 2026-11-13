@@ -3,3 +3,4 @@ GameStage_gameOverScreen = 0x80106478; // type:func
 GameStage_fieldRun = 0x80106B98; // type:func
 GameStage_running = 0x80108784; // type:func
 GameStage_leaveGame = 0x801089C4; // type:func
+GameStage_ending = 0x80106A24; // type:func
