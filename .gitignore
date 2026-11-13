@@ -14,3 +14,6 @@ __pycache__/
 /scratch/
 # splat writes its assembler macros here on every split; tracked once C needs them.
 /include/
+
+# long-lived ignored inputs and derived assets (Ghidra projects, decompiled output)
+env-assets/
