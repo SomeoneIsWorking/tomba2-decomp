@@ -96,6 +96,12 @@ Each test water against the swim bit `G+0x17E & 0x100` the same way: with it, mo
   hang (mode 0x2A) or a held mode 3 sets `G+0x181` instead of starting the swim, and `FUN_8012DE84(G, y)` picks the
   surface height `0x1F80019E`. Measured from entry 1, spot sector 1 (8064, -3900, 7808): no suit falls in at f18 with
   vitality 4 → 3; Swimming Pig worn swims at f14.
+- A08 `Waterfall_tombaContact` (`0x8010D334`, a1 the waterfall, actor kind 0x5A, the contact dispatcher
+  `0x8010E7C0`'s table at `0x80109120`): by the actor's shape byte +3 (1 cylinder, 2 and 4 the box test
+  `0x80022F04`, 3 `0x8001F830`) a swimmer (`G+0x17E & 0x100`) is lifted up the falling water to its top, up to 6 or
+  0x10 a frame, and anyone else is pushed out along the contact angle `0x1F80009C` into hazard substate 2 (the
+  knockback, `G+0x172 = 0x78`). The shape 1 fall over the pool at sector 6 (15221, -6240, 4160) is loaded from
+  entry 9: no suit is knocked out at f66, Swimming Pig worn stays in the pool in mode 0x10.
 - A0E `TombaTick_floor` (`0x8010967C`): while `0x800BF850 == 0x80` holds Tomba at the ridden actor `*0x1F800260`'s X
   plus his radius. Entering the area plays the Water Pig Bag scene (Tomba in group 4 mode 0x22) unless
   `0x800BFA1A & 0x10`; with it set, spot sector 5 (10240, -3070, 11840) drops Tomba onto water at f18.
