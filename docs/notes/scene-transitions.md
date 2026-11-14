@@ -70,6 +70,15 @@ ordinary play (load mode 4).
 Start skips neither fade in the retail code: the narration's fade-in ignores the pad, and case 10 always runs
 its 31 steps.
 
+The narration's sound is one XA clip, channel 7 from LBA 66515 to 75523, played whole: `FUN_8001D2A8` (chan,
+start, end, flags) restarts task slot 2 on `FUN_8001CFC8`, which pauses, sets the filter and location, issues ReadS
+and unmutes the CD mix (`FUN_8001CF00(1)`) only once `GetlocL` reports a sector inside the clip. The clip's audio
+ends at its sector 628 (about LBA 71540); the rest of it is digital silence. The crawl's pending byte `0x800BF839` is
+set by the scene object `FUN_800527C8` in substate 1, after its own 30-tick wait, `BgSceneTransitionSm_readyForProgress`
+(`FUN_80042728`: no dialog box and `0x800BF849` clear) and a 20-tick countdown: about 2 s of the silent tail
+plays before the byte is set and 1 s more through the fade-out (observed); state 4 then stops the clip
+(`FUN_8001CF2C`), and area 0 starts its music, channel 4 from LBA 84515, through `FUN_8001D2A8` with the loop flag.
+
 ## Not a transition: FUN_80127798's node[5] = 3
 
 The area-0 object `FUN_80127798` (a node at `0x800F1F58` in area 0) leaves state 1 when `0x1F800207` is 29-31 or
