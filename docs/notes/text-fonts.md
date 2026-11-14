@@ -19,6 +19,12 @@ Glyphs are CLUT index 1 with indices 3, 4 and 5 on their edges, over a shadow in
 icons use indices 1-4 and 6-D and have no shadow. The four buttons, in all three fonts, are a disc in indices 1-4 with
 the symbol in its own indices (circle 7/8, cross 9/A, triangle B/C, square D), which their CLUT rows colour.
 
+Read from the page in VRAM (area 8 Options), the symbol cells are one colour (index 1, edges 3-5, shadow 6) except:
+in the 8x16 font the arrows 0x64-0x6B, ◇ 0x82, □ 0x84, △ 0x86 and ▽ 0x88 are filled in index 4 inside their outline,
+where the 8x8 font draws them hollow; the box 0x98 is filled in index 3 in both. The 8x8 arrows 0x64-0x67 are white
+(hollow) arrows, 0x68-0x6B hollow diagonal ones. Cells 0x7D and 0x7E, which the token table names 【 and 】, are drawn
+as a square ring around a smaller square ring in both fonts.
+
 Rows 3 and 4 of both letter fonts (cells 0x60-0x98) are the symbols the token table below names, in its order; in
 the US build only `Font_iconGlyphEmit` reaches them; the US strings found draw the buttons 0x60-0x63 (the glyphEmit
 bytes 0x01-0x04, the Options screens) and ■ 0x85 (the Options volume bars).
