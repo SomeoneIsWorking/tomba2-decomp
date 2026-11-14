@@ -118,6 +118,13 @@ port owner or the issue holds the proof.
 - where: psx-tomba `game/ui/text_fonts.h`, `font.cpp`, `dialog_glyphs.cpp`
 - gap: none for the drawers; the token table (0x800A55E0) and its strings are decoded, and the unshadowed font at v 152 has no drawer (`text-fonts.md`).
 
+### T2-R5 — Tomba's draw transform
+- status: re-verified
+- deps: T2-R3
+- evidence: `docs/notes/tomba-draw-transform.md`. Ghidra C of `FUN_800597AC` (`decomp_pipeline.py`, body present) names every field it reads; store watches on G+0x88..0x8E and on record 2's +8..+0xE and +0x38..+0x3E over a village run and jump give the writers and which of them move.
+- where: psx-tomba `game/core/frame/draw_motion.cpp` (the `tomba` track)
+- gap: the pan `G+0x14E` (gated by `G+0x177` bit 0) is written only by area events, none observed.
+
 ### T2-R3 — Render-record reuse
 - status: re-verified
 - deps: T2-R1
