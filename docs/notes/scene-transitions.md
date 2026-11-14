@@ -16,8 +16,22 @@ Every store to `0x1F800236` in MAIN.EXE and the 28 overlays (`sb rt, 0x236(rs)` 
 - 7: area objects that walk the camera to them first, then request the area in their byte +0xBF (A00
   `FUN_8013BAB0`: `0x800BF83A` = +0xBF << 4); also A01, A04, A06, A08 and A09;
 - 8: the boss arenas' clear step (A0A-A0F). A0A `FUN_80116998` case 5 sets the pending byte 1, the destination
-  per arena (area 10 → 6/7, 11 → 8/12, 12 → 1/5, 13 → 4/4, 14 → 0/11), an arena bit in `0x800BFE56`, the type 8
-  and `0x1F800240` (s16) = the arena's area.
+  per arena (area 10 → 6/7, 11 → 8/12, 12 → 1/5, 13 → 4/4, 14 → 0/11), area-variant bits in `0x800BFE56`
+  (10: areas 1 and 2, 11: 4 and 5, 12: 6, 13: 7, 14: 8), the type 8 and `0x1F800240` (s16) = the arena's area.
+
+## Area variants
+
+`0x800BFE56` (u16, `g_GblAreaId + 0x5E6`) holds one bit per area; the arena clear steps above are its only
+writers in the overlays. A field load (`FieldTransition_areaLoadBd4` → `Asset_loadTexgroup`, sm[0x6D] = 2) reads
+area `a`'s descriptor `D_800EF478` from file `0x800BE0F0 + a + 4`, or `+ a + 0x1A` when bit `a` is set; the
+descriptor's class map (`class << 24 | offset`, loop at `0x80045488`) fills `0x800ECF58[class]`. `Pool` start
+tables (`0x800A4F50`/`0x800A4F68`) and A06's scripted actor branch on the same bit.
+
+Area 6 entry 7 is area 10's clear destination. Its entry record raises event 9 (`0x800BF817`), whose actor
+(A06 `func_801164CC`, subtype 9, list `0x801441D4`) draws class 12 item 0x63. Area 6's plain variant maps class 12
+to a pack of 0x61 items; only the variant bit 6, set by area 12's clear, maps one that holds item 0x63. Arriving
+at 6/7 with bit 6 clear draws the plain pack's offset table as a model (GT4 packets with code words 0x00/0xFF, VRAM
+copies on the GPU): area 10's clear relies on area 12 being cleared first.
 
 ## The variants
 
