@@ -94,6 +94,8 @@ port owner or the issue holds the proof.
 - Area transitions: `Engine::frame` owns sub-mode `sm[0x4A]` 5 (`FieldTransition::step`), and `submode1Case0Native`
   loads the area in `0x800BF870` rather than the stale `sm[0x6E]`. Warps to areas 4 and 5 abort in the area handler
   (issue 0035).
+- Transition variants, the boss-clear card, the opening's fades and the memory-card check are decoded in
+  `docs/notes/scene-transitions.md`. Not decoded: which steps of CRD's card check (`0x8018FBF0`) take its 13 frames.
 
 ## Render producers
 
