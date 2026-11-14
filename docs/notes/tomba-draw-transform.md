@@ -46,5 +46,16 @@ The shake reaches the picture a tick late. `CutsceneCamera_shakeTail` writes the
 `mainFollow` skips `heading` (state 7 is set again before the camera runs), so its `lookAt` builds the view from the
 jittered eye. A drawn view therefore carries the previous tick's jitter, and no view is kept without it.
 
+What a drawn view is built from. `FUN_8006D02C(a0 = camera object 0x800E8008)` is the look-at: it reads the whole
+units of the eye (the high halves of the 16.16 words at `0x1F8000D0/D4/D8`) and of the target (`0x1F8000DC/E0/E4`),
+writes pitch and yaw to `0x1F8000F0/F2`, the distances to `cam+0x5C/0x60`, the view rotation to `0x1F8000F8` and
+its translation `R * -eye` to `0x1F80010C`, and copies the matrix to `0x1F800118`. `mainFollow` (`FUN_8006E0F0`)
+then subtracts `cam+0x28 + cam+0x34` from the translation Z `0x1F800114`; nothing else moves the view before the
+field draw in the village. The jitter arms write `eye = anchor + offset`: the height arms (states 5, 6/7, 8/9) only
+Y, offset `-32 + (rand & 0x3F)` or `-16 + (rand & 0x1F)` from `cam+0x88`; the axis arm (state 2) X and Z by
+`-16 + (rand & 0x1F)` from `cam+0x86/0x8A` and Y by `-8 + (rand & 0xF)` from `cam+0x88`. The view the next tick
+draws is the look-at of the jittered eye exactly when no step moved the eye in between (`heading` skipped), so
+its unshaken view is the same look-at with the offset taken off the eye.
+
 Observed (village `warp 0/0`, standing): the pan runs 0, 0x80 ... 0x400 and back; a stomp shakes the camera for 12
 ticks (entries 9 and 11) and up to 117 ticks (entry 22), the view's translation Y moving by up to 0x65 a tick.

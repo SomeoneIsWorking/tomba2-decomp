@@ -125,8 +125,10 @@ port owner or the issue holds the proof.
 - deps: T2-R3
 - evidence: `docs/notes/tomba-draw-transform.md`. Ghidra C of `FUN_800597AC` (`decomp_pipeline.py`, body present) names every field it reads; store watches on G+0x88..0x8E and on record 2's +8..+0xE and +0x38..+0x3E over a village run and jump give the writers and which of them move. The pan `G+0x14E` (gated by `G+0x177` bit 0) is the idle sequence's
   (`FUN_8005A39C`, table `0x800A4610`), observed turning 0 to 0x400 in 0x80 steps while Tomba stands in the village; the
-  same sequence writes the camera shake state `0x800E807E`, whose jitter reaches the next tick's view.
-- where: psx-tomba `game/core/frame/draw_motion.cpp` (the `tomba` and `tomba pan` tracks)
+  same sequence writes the camera shake state `0x800E807E`, whose jitter reaches the next tick's view. The look-at
+  `FUN_8006D02C` builds the view from the eye and target words alone, so a shaken view is the look-at of the anchor
+  plus the tail's offset.
+- where: psx-tomba `game/core/frame/draw_motion.cpp` (the `tomba` and `tomba pan` tracks, `ShakenView`)
 - gap: the area overlays' own `+0x14E`/`+0x177` writers (A04, A05, A06, A0B, A0I) are not decompiled.
 
 ### T2-R3 — Render-record reuse
