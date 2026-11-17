@@ -91,6 +91,12 @@ port owner or the issue holds the proof.
   `tomba::FrameDriver::stepFrame` writes it at the frame boundary. The warp has no second path: the old synchronous cold
   load is gone, because the game's own transition reaches every case it covered. Not decoded: FREE POSITION, SYSTEM
   TOOLS and WORLD INFO.
+- The field subscreen (GAME page 6, `docs/notes/field-subscreen.md`): `GameStage_pageStep` opens it as its own field
+  arm does, `Subscreen_step` runs the 0x30-byte `g_Subscreen` at `0x80100660`, and the Items tab's step, list and hint
+  box are decompiled (`ItemsTab_step`, `ItemsTab_itemAt`, `FUN_80033FF4`). The port reaches it with `subscreen <item>`
+  and shows a selected suit's lent effects in the hint box (`game/ui/items_tab.cpp`, `game/ui/subscreen_hint.cpp`).
+  The list places items by `0x800BFBB4[id]`, which GRANT ALL leaves unset, so a granted item shows only after the
+  game's own give-and-flag.
 - Area transitions: `Engine::frame` owns sub-mode `sm[0x4A]` 5 (`FieldTransition::step`), and `submode1Case0Native`
   loads the area in `0x800BF870` rather than the stale `sm[0x6E]`. Warps to areas 4 and 5 abort in the area handler
   (issue 0035).

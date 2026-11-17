@@ -4,3 +4,6 @@ GameStage_fieldRun = 0x80106B98; // type:func
 GameStage_running = 0x80108784; // type:func
 GameStage_leaveGame = 0x801089C4; // type:func
 GameStage_ending = 0x80106A24; // type:func
+PauseMenu_step = 0x801084F8; // type:func
+GameStage_subscreenPage = 0x80108624; // type:func
+GameStage_pageStep = 0x8010810C; // type:func
