@@ -95,3 +95,10 @@ and 8 (save): case 0 loads CRD, then `FUN_8007BE18` runs CRD's browser on sm[0x5
 `FUN_80080840` and returns 1-4 for the one that fired, else counts +0x43 and returns 2 (timeout) at 0xFF. The
 browser shows "Checking MEMORY CARD..." until the check settles and keeps calling `_card_info` on both ports every
 few frames while it is up.
+
+The browser `0x8018FBCC` runs the port check `0x8018A1E8` and then the page of its state (+0x00). State 0 is the
+check page `0x8018DC2C`, stepped by +0x01: step 0 zeroes +0x50; step 1 counts +0x50 up to 11 with nothing to wait
+on; step 2 waits until both port results (+0x4A, +0x4B) are neither 0xFC (unchecked) nor 1, then enters state 1
+(the slot browser `0x8018DD38`). Every step, pad bit 0x2000 sets the page answer sm[0x50] to 2 (3 when +0x3C bit 0
+is set) and bit 0x1000 sets 3. So the page shows for 1 + 11 frames before it reads a result: with the instant card
+of an emulator the 13 frames are that count.

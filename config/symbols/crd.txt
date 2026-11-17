@@ -1,1 +1,5 @@
-// crd: no names yet.
+// crd: names from our own RE (docs/notes/scene-transitions.md, the memory-card pages).
+CardBrowser_checkPort = 0x8018A1E8; // type:func
+CardCheck_step = 0x8018DC2C; // type:func
+CardBrowser_slotPage = 0x8018DD38; // type:func
+CardBrowser_step = 0x8018FBCC; // type:func
