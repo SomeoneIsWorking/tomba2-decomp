@@ -265,3 +265,20 @@ packets, OT splice, trailing DR_TPAGE packet via the already-RE'd but still-subs
 called through `typed runtime address dispatch` exactly like `Font::glyphEmit`'s own tail). The
 picture is those guest packets on the GPU device; the port pushes nothing to the host.
 
+
+## What each area's grid shows (2026-11-18)
+
+Grid node 0x800ED018 read from RAM 240 frames after `warp <area>/0`. A tile word is `atlas cell (bits 0-7) |
+palette (bits 8-11)`; palette k is the CLUT row k below the node's +6 CLUT, one VRAM row per palette.
+
+| area | W x H | CLUT | rows |
+|---|---|---|---|
+| A00 | 36 x 72 | (1008, 250) | 0-29 tile 0x040 alone (palette 0); 30-32 palette 0 cloud tiles 0x044-0x058 and 0x041; 33 tile 0x142 (palette 1), the horizon; 34-35 palette 2; 36-40 palettes 3-5 with an island (0x47A-0x482); 41-71 the 2x2 repeat 0x58B-0x590 (palette 5) |
+| A06 | 36 x 36 | (624, 507) | palette 3 fill around a palette 0 band (rows 10-22): the forest wall |
+| A07 | 36 x 72 | (1008, 237) | palette 0 above row 37, a palette 1-4 band to row 42, palette 2 below |
+| A0A, A0B, A0D, A0F | 40 x 72 | (1008, 251/247/236/250) | boss arenas' space, ice and void backdrops |
+| A0E | — | — | no grid: its sky is the gouraud bands of FUN_80114178 |
+
+A00's palette cycle FUN_80115B88 (descriptors 0x80147D84) loads CLUT rows 253, 254 and 255 (descriptors 9-11),
+which are A00's grid palettes 3, 4 and 5: the sea is the grid tiles whose palette the area's cycle animates. Its other
+nine descriptors load rows 210-235, outside the grid's palettes. A00's sky is palette 0, its horizon palettes 1-2.
