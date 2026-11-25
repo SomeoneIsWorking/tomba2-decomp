@@ -55,8 +55,8 @@ clut=((char+0x1F0)<<6)|0x3F when char≠0x12. DEP: needs FUN_8007C940's glyph li
 ## Title/menu box-quad emitter — FUN_8007e1b8 family (RE'd 2026-07-15, separate from the 9-slice panel)
 
 The DEMO/title menu box + cursor-highlight (the 3 op-0x2C/0x2D FT4 quads the otattr attributed to
-`0x8007E2F8`/`0x8007E620`). DEFINITIVE: the menu TEXT ("New Game"/"Load Game") is the native Font path
-(`Font::drawText`); this family draws ONLY box/cursor quads. `0x8007E2F8`/`0x8007E620` are jump-table
+`0x8007E2F8`/`0x8007E620`). The title menu's item labels are this family's quads too: DEMO `FUN_80106824` draws
+each through `FUN_8007e1b8` (see Title menu labels below). `0x8007E2F8`/`0x8007E620` are jump-table
 labels INSIDE `FUN_8007e1b8` (the FT4 emitter, frame 0), reached via `@0x8001728c`. `FUN_8007e6dc` = SPRT
 variant. `FUN_8007e998(x,y,bucket=1) = FUN_8007e8dc(x,y,1,templIdx=0x98)` = the cursor-highlight quad.
 
@@ -82,3 +82,23 @@ DATA-DRIVEN — a read-only `titleMenuNative()` reads the SAME guest tables (do 
 - These are geometry builders (rect/list → quads); the reusable native primitive is `uiEmitFT4(rect,uvIndex,attr,tp)`
   / `uiEmitSprite8(pos,uv,attr,tp)`.
 - Skin-texture atlas at VRAM (960,256) — eyeball-verify once drawn; texel u/v above are byte-exact from packets.
+
+## Title menu labels
+
+DEMO `FUN_80106824(menu, item)` draws the title menu's two items through `FUN_8007e1b8`, each one sprite
+definition of one piece, all on DR_TPAGE 0x1D (4bpp page at (832, 256)), each through its own CLUT:
+
+| definition | label | u, v | w x h | x offset | CLUT |
+|---|---|---|---|---|---|
+| 0x8E | New Game | 0, 1 | 80 x 16 | -40 | 0x7F77 (yellow) |
+| 0x8F | Load Game | 80, 1 | 88 x 16 | -44 | 0x7FB7 (green) |
+| 0x90 | Start Game | 0, 17 | 96 x 16 | -47 | 0x7EF7 (pink) |
+| 0x91 | Options | 168, 1 | 72 x 16 | -36 | 0x7F37 (cyan) |
+
+Every y offset is -8, so the placement is the label's centre. The four CLUTs share one layout: index 1 is colour 0
+(the clear box behind the letters), 0xA a near-white highlight, 0xB to 0xE the label's colour from light to dark,
+0xF the dark rim. Each letter shades from 0xA at its own top (capitals from row 1, lowercase from their x-height) to
+0xD/0xE at its bottom, lighter on the upper left of a stroke. The rim is one texel on the top and left and two on the
+bottom and right, so the drop shadow is drawn into it. The letters are hand-drawn (`m` drawn like an `M`, `t` like a
+plus) and lean forward slightly. Other lettering of this style among the loaded definitions: Load, Save, Items, Event,
+Status, Help, Full!! and Game Over! (0x34, 0x35, 0x46-0x49, 0x73, 0x17A); none spells a capital C.
