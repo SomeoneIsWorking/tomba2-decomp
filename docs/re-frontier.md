@@ -102,6 +102,8 @@ port owner or the issue holds the proof.
   (issue 0035).
 - Transition variants, the boss-clear card, the opening's fades and the memory-card check are decoded in
   `docs/notes/scene-transitions.md`. CRD's check page `0x8018DC2C` holds 11 frames on a count before it reads the port results.
+- Memory-card saves (file names, directory scan, the load ops and a direct-load sequence) are decoded in
+  `docs/notes/memory-card-saves.md`. Open: the writer of the play-time frame counter `0x800BF878`.
 
 ## Render producers
 

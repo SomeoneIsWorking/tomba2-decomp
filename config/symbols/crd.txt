@@ -1,5 +1,22 @@
 // crd: names from our own RE (docs/notes/scene-transitions.md, the memory-card pages).
 CardBrowser_checkPort = 0x8018A1E8; // type:func
+CardSave_buildHeader = 0x8018A428; // type:func
+CardSave_writeFile = 0x8018AEB8; // type:func
+CardLoad_openRead = 0x8018B020; // type:func
+CardLoad_verifyApply = 0x8018B1A4; // type:func
+CardSave_write = 0x8018B478; // type:func
+CardDir_scan = 0x8018BA68; // type:func
+CardPort_infoLoad = 0x8018BF74; // type:func
+CardBrowser_drawSave = 0x8018C790; // type:func
+CardBrowser_buildList = 0x8018D74C; // type:func
+CardBrowser_listScroll = 0x8018DB28; // type:func
 CardCheck_step = 0x8018DC2C; // type:func
 CardBrowser_slotPage = 0x8018DD38; // type:func
+CardBrowser_readPort = 0x8018DFEC; // type:func
+CardBrowser_loadList = 0x8018ED94; // type:func
+CardBrowser_loadConfirm = 0x8018EFDC; // type:func
+CardBrowser_loadWait = 0x8018F280; // type:func
+CardBrowser_runOp = 0x8018F660; // type:func
+CardBrowser_draw = 0x8018F854; // type:func
+CardBrowser_init = 0x8018FA88; // type:func
 CardBrowser_step = 0x8018FBCC; // type:func
